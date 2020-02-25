@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="calc.css">
+<script>
+var num1 = 0;
+var num2 = 0;
+var res = 0;
+var flag = 0;
+var opera;
+function myFunction(x){
+  num1 = (num1*10)+x;
+  document.getElementById("res").value = num1 ;
+}
+function del(){
+  if(flag%2==1){
+    res = (res-(res%10))/10;
+    document.getElementById("res").value = res ;
+  }
+  else{
+    num1 = (num1-(num1%10))/10;
+    document.getElementById("res").value = num1 ;
+  }
+}
+function operator(x){
+  switch(x){
+    case "re":
+      document.getElementById("res").value = "";
+      num1 = 0;
+      num2 = 0;
+      res = 0;
+      flag = 0;
+      break;
+    case "d":
+      document.getElementById("res").value = "÷";
+      opera = "d";
+      if (flag==0){
+      num2 = num1;
+      num1 = 0;
+      }
+      else{
+      flag = flag + 1;
+      num2 = res;
+      num1 = 0;
+      }
+      break;
+    case "mo":
+      document.getElementById("res").value = "%";
+      opera = "mo";
+      if (flag==0){
+      num2 = num1;
+      num1 = 0;
+      }
+      else{
+      flag = flag + 1;
+      num2 = res;
+      num1 = 0;
+      }
+      break;
+    case 'x':
+      document.getElementById("res").value = "x";
+      opera = "x";
+      if (flag==0){
+      num2 = num1;
+      num1 = 0;
+      }
+      else{
+      flag = flag + 1;
+      num2 = res;
+      num1 = 0;
+      }
+      break;
+    case "m":
+      document.getElementById("res").value = "-";
+      opera = "m";
+      if (flag==0){
+      num2 = num1;
+      num1 = 0;
+      }
+      else{
+      flag = flag + 1;
+      num2 = res;
+      num1 = 0;
+      }
+      break;
+    case "p":
+      document.getElementById("res").value = "+";
+      opera = "p";
+      if (flag==0){
+      num2 = num1;
+      num1 = 0;
+      }
+      else{
+      flag = flag + 1;
+      num2 = res;
+      num1 = 0;
+      }
+      break;
+  }
+}
+function equal(){
+  switch (opera){
+    case 'mo':
+      res = num2 % num1;
+      document.getElementById('res').value = res;
+      flag = flag + 1;
+      break;
+    case "d":
+      res = num2 / num1;
+      document.getElementById('res').value = res;
+      flag = flag + 1;
+      break;
+    case "x":
+      res = num2 * num1;
+      document.getElementById('res').value = res;
+      flag = flag + 1;
+      break;
+    case "m":
+      res = num2 - num1;
+      document.getElementById('res').value = res;
+      flag = flag + 1;
+      break;
+    case "p":
+      res = num2 + num1;
+      document.getElementById('res').value = res;
+      flag = flag + 1;
+      break;
+  }
+}
+</script>
+</head>
+<body>
+<div id="main">
+<p id='name'>CALCULATOR</p>
+<input id="res">
+<br>
+<div id="butt">
+<button type="button" id="restart" onclick="operator('re')"> C </button>
+<button type="button" onclick="del()"> Del </button>
+<button type="button" onclick="operator('mo')"> % </button>
+<button type="button" onclick="operator('d')"> ÷ </button>
+<br>
+<button type="button" onclick="myFunction(7)"> 7 </button>
+<button type="button" onclick="myFunction(8)"> 8 </button>
+<button type="button" onclick="myFunction(9)"> 9 </button>
+<button type="button" onclick="operator('x')"> x </button>
+<br>
+<button type="button" onclick="myFunction(4)"> 4 </button>
+<button type="button" onclick="myFunction(5)"> 5 </button>
+<button type="button" onclick="myFunction(6)"> 6 </button>
+<button type="button" onclick="operator('m')"> - </button>
+<br>
+<button type="button" onclick="myFunction(1)"> 1 </button>
+<button type="button" onclick="myFunction(2)"> 2 </button>
+<button type="button" onclick="myFunction(3)"> 3 </button>
+<button type="button" onclick="operator('p')"> + </button>
+<br>
+<button type="button" onclick="myFunction(0)"> 0 </button>
+<button type="button" onclick="operator('po')"> . </button>
+<button type="button" onclick="operator('ans')"> ans </button>
+<button type="button" onclick="equal()"> = </button>
+</div>
+</div>
+</body>
+</html>
